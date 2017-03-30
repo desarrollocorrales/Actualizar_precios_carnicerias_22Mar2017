@@ -65,7 +65,7 @@ namespace ActPreciosCarn.Negocio
             // guarda actualizacion
             this._consultasMySQLDatos.guardaActualizacion(seleccionados, bloque + 1);
 
-            return bloque;
+            return bloque + 1;
         }
     }
 }

@@ -40,6 +40,24 @@ namespace ActPreciosCarn
 
                 this.gcPreciosArt.DataSource = new List<Modelos.Articulos>();
                 this.gcArticActualizar.DataSource = new List<Modelos.Articulos>();
+
+                // Create the ToolTip and associate with the Form container.
+                ToolTip toolTip1 = new ToolTip();
+
+                // Set up the delays for the ToolTip.
+                toolTip1.AutoPopDelay = 5000;
+                toolTip1.InitialDelay = 1000;
+                toolTip1.ReshowDelay = 500;
+
+                // Force the ToolTip text to be displayed whether or not the form is active.
+                toolTip1.ShowAlways = true;
+
+                // Set up the ToolTip text for the Button and Checkbox.
+                toolTip1.SetToolTip(this.btnCargaArti, "Carga los Artículos con sus precios desde Microsip");
+                toolTip1.SetToolTip(this.btnAgregarArt, "Agregar los seleccionados a la lista de Artículos a Actualizar");
+                toolTip1.SetToolTip(this.btnQuitarArt, "Quitar los seleccionados de la lista de Artículos a Actualizar");
+                toolTip1.SetToolTip(this.btnQuitarTodos, "Limpiar la lista de Artículos a Actualizar");
+                toolTip1.SetToolTip(this.btnGuarda, "Guarda todos los cambios realizados a los Artículos");
             }
             catch (Exception Ex)
             {
@@ -236,6 +254,8 @@ namespace ActPreciosCarn
                         "Bloque de actualización creado '" + respuesta + "': " + lista.Trim());
 
                     MessageBox.Show("Proceso concluido");
+
+                    this.gcArticActualizar.DataSource = new List<Modelos.Articulos>();
                 }
             }
             catch (Exception Ex)
