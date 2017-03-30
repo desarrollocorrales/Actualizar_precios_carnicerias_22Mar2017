@@ -253,7 +253,7 @@ namespace ActPreciosCarn
                     this._consultasMySQLNegocio.generaBitacora(
                         "Bloque de actualización creado '" + respuesta + "': " + lista.Trim());
 
-                    MessageBox.Show("Proceso concluido");
+                    MessageBox.Show("Proceso concluido", "Actualizar Precios Carnicerías", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.gcArticActualizar.DataSource = new List<Modelos.Articulos>();
                 }
@@ -274,7 +274,59 @@ namespace ActPreciosCarn
             }
             catch (Exception Ex)
             {
-                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(Ex.Message, "Actualizar Precios Carnicerías", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void salirToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("¿Desea salir de la aplicación?", "Actualizar Precios Carnicerías", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void altaUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmAtlaUsuario child = new frmAtlaUsuario();
+
+                child.ShowDialog();
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Actualizar Precios Carnicerías", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void cambioDeClaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmCambiarClave form = new frmCambiarClave(Modelos.Login.usuario, Modelos.Login.idUsuario);
+
+                form.ShowDialog();
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Actualizar Precios Carnicerías", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void descargaInformaciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmDescargaInfo form = new frmDescargaInfo();
+
+                form.ShowDialog();
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Actualizar Precios Carnicerías", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }

@@ -66,6 +66,7 @@
             this.tbPass.PasswordChar = '*';
             this.tbPass.Size = new System.Drawing.Size(286, 30);
             this.tbPass.TabIndex = 11;
+            this.tbPass.Text = "a";
             this.tbPass.UseSystemPasswordChar = true;
             this.tbPass.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPass_KeyPress);
             // 
@@ -76,6 +77,7 @@
             this.tbUsuario.Name = "tbUsuario";
             this.tbUsuario.Size = new System.Drawing.Size(286, 30);
             this.tbUsuario.TabIndex = 10;
+            this.tbUsuario.Text = "desarrollo";
             this.tbUsuario.Enter += new System.EventHandler(this.tbUsuario_Enter);
             this.tbUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbUsuario_KeyPress);
             // 
@@ -125,7 +127,7 @@
             this.Font = new System.Drawing.Font("Tahoma", 14F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

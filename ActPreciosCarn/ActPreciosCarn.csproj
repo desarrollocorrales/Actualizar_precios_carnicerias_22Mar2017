@@ -100,11 +100,35 @@
     <Compile Include="GUIs\frmAcceso.Designer.cs">
       <DependentUpon>frmAcceso.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIs\frmAtlaUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\frmAtlaUsuario.Designer.cs">
+      <DependentUpon>frmAtlaUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\frmBitacora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\frmBitacora.Designer.cs">
+      <DependentUpon>frmBitacora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\frmCambiarClave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\frmCambiarClave.Designer.cs">
+      <DependentUpon>frmCambiarClave.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIs\frmConfiguracion.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUIs\frmConfiguracion.Designer.cs">
       <DependentUpon>frmConfiguracion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\frmDescargaInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\frmDescargaInfo.Designer.cs">
+      <DependentUpon>frmDescargaInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\frmLogin.cs">
       <SubType>Form</SubType>
@@ -112,6 +136,7 @@
     <Compile Include="GUIs\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\Actualizacion.cs" />
     <Compile Include="Modelos\Articulos.cs" />
     <Compile Include="Modelos\ConexionFB.cs" />
     <Compile Include="Modelos\ConexionMySQL.cs" />
@@ -132,8 +157,20 @@
     <EmbeddedResource Include="GUIs\frmAcceso.resx">
       <DependentUpon>frmAcceso.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\frmAtlaUsuario.resx">
+      <DependentUpon>frmAtlaUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\frmBitacora.resx">
+      <DependentUpon>frmBitacora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\frmCambiarClave.resx">
+      <DependentUpon>frmCambiarClave.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUIs\frmConfiguracion.resx">
       <DependentUpon>frmConfiguracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\frmDescargaInfo.resx">
+      <DependentUpon>frmDescargaInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -150,6 +187,7 @@
     </Compile>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ActPreciosCarn.Modelos.Actualizacion.datasource" />
     <None Include="Properties\DataSources\ActPreciosCarn.Modelos.Articulos.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

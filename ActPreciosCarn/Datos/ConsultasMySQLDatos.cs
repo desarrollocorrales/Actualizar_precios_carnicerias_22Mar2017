@@ -291,5 +291,248 @@ namespace ActPreciosCarn.Datos
 
             return result;
         }
+
+        // busca un correo en usuarios
+        public bool buscaCorreo(string correo)
+        {
+            bool result = false;
+
+            string sql = "select count(*) from usuarios where trim(correo) = @correo and status = 'A'";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexionMySQL.getConexionMySQL())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@correo", correo);
+
+                    ManejoSql_My res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            int count = Convert.ToInt16(res.reader[0]);
+
+                            if (count > 0) result = true;
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
+        // inserta un nuevo usuario
+        public bool insertaUsuario(string nombreCompleto, string correo, string usuario, string clave)
+        {
+            MySqlTransaction trans;
+
+            bool result = true;
+
+            string sql = string.Empty;
+
+            int rows = 0;
+
+            string error = string.Empty;
+
+            using (var conn = this._conexionMySQL.getConexionMySQL())
+            {
+                conn.Open();
+                using (var cmd = new MySqlCommand())
+                {
+                    trans = conn.BeginTransaction();
+
+                    try
+                    {
+                        cmd.Connection = conn;
+                        cmd.Transaction = trans;
+
+                        // inserta actuaizacion
+                        sql =
+                            "INSERT INTO usuarios (nombre_completo, correo, fecha_creacion, usuario, clave, status) " +
+                            "VALUES (@nombreCompleto, @correo, now(), @usuario, @clave, @status)";
+
+                        string claveBase64 = Utilerias.Base64Encode(clave);
+
+                        // define parametros
+                        cmd.Parameters.AddWithValue("@nombreCompleto", nombreCompleto);
+                        cmd.Parameters.AddWithValue("@correo", correo);
+                        cmd.Parameters.AddWithValue("@usuario", usuario);
+                        cmd.Parameters.AddWithValue("@clave", claveBase64);
+                        cmd.Parameters.AddWithValue("@status", "A");
+
+                        ManejoSql_My res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
+
+                        if (!res.ok)
+                            throw new Exception(res.numErr + ": " + res.descErr);
+
+                        trans.Commit();
+                    }
+                    catch (Exception e)
+                    {
+                        trans.Rollback();
+                        throw new Exception(e.Message);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        // valida que la clave es correcta
+        public bool validaClave(string claveActual, int _idUsuario)
+        {
+            bool result = false;
+
+            string sql = "select count(*) from usuarios where clave = @clave and id_usuario = @idUsuario";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexionMySQL.getConexionMySQL())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@clave", Utilerias.Base64Encode(claveActual));
+                    cmd.Parameters.AddWithValue("@idUsuario", _idUsuario);
+
+                    ManejoSql_My res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            int count = Convert.ToInt16(res.reader[0]);
+
+                            if (count > 0) result = true;
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
+        // actualiza clave
+        public bool actualizaClave(string clave, int idUsuario, string usuario)
+        {
+            string sql = "update usuarios set clave = @clave where id_usuario = @idUsuario";
+
+            bool result = true;
+
+            int rows = 0;
+
+            using (var conn = this._conexionMySQL.getConexionMySQL())
+            {
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@clave", Utilerias.Base64Encode(clave));
+                    cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+
+                    ManejoSql_My res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
+
+                    if (!res.ok)
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                }
+            }
+
+            return result;
+        }
+
+        // regresa toda la informacion sobre los articulos a actualizar
+        public List<Actualizacion> obtieneInformacion(string fechaIni, string fechaFin, int bloque, bool pendiente, bool realizado)
+        {
+            List<Actualizacion> result = new List<Actualizacion>();
+            Actualizacion ent;
+
+            // string sql = "select idusuario, usuario from activos_usuarios where usuario = @usuario and clave = @clave";
+
+            string sql =
+                        "select id_actualizacion, num_bloque, fecha, clave_articulo, " +
+                        "if(fidel = 'P' , 'PENDIENTE', 'REALIZADO') as fidel, " +
+                        "if(heroico = 'P' , 'PENDIENTE', 'REALIZADO') as heroico, " +
+                        "if(libertad = 'P' , 'PENDIENTE', 'REALIZADO') as libertad, " +
+                        "if(status = 'P' , 'PENDIENTE', 'REALIZADO') as status " +
+                        "from actualizacion " +
+                        "where fecha between @fechaIni and @fechaFin ";
+
+            if (bloque > 0)
+                sql += "and num_bloque = @bloque";
+
+            if()
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexionMySQL.getConexionMySQL())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@usuario", usuario);
+                    cmd.Parameters.AddWithValue("@clave", Utilerias.Base64Encode(pass));
+
+                    ManejoSql_My res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        if (res.reader.HasRows)
+                            while (res.reader.Read())
+                            {
+                                result = new Usuarios();
+
+                                result.idUsuario = Convert.ToInt16(res.reader["id_usuario"]);
+                                result.nombreCompleto = Convert.ToString(res.reader["nombre_completo"]);
+                                result.correo = Convert.ToString(res.reader["correo"]);
+
+                                result.fechaCreacion = Convert.ToString(res.reader["fecha_creacion"]);
+                                result.usuario = Convert.ToString(res.reader["usuario"]);
+                                result.status = Convert.ToString(res.reader["status"]);
+
+                            }
+                        else result = null;
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
     }
 }

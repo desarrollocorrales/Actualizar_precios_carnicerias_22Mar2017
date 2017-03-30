@@ -63,18 +63,28 @@
             this.btnQuitarArt = new System.Windows.Forms.Button();
             this.btnQuitarTodos = new System.Windows.Forms.Button();
             this.btnGuarda = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.altaUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cambioDeClaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
+            this.salirToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.descargaInformaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bitacoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gcPreciosArt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.articulosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcArticActualizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 18F);
-            this.label1.Location = new System.Drawing.Point(89, 23);
+            this.label1.Location = new System.Drawing.Point(12, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(318, 29);
             this.label1.TabIndex = 0;
@@ -405,6 +415,78 @@
             this.btnGuarda.UseVisualStyleBackColor = true;
             this.btnGuarda.Click += new System.EventHandler(this.btnGuarda_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.Color.Silver;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.archivoToolStripMenuItem,
+            this.reportesToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1376, 24);
+            this.menuStrip1.TabIndex = 11;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // archivoToolStripMenuItem
+            // 
+            this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.altaUsuarioToolStripMenuItem,
+            this.cambioDeClaveToolStripMenuItem,
+            this.salirToolStripMenuItem,
+            this.salirToolStripMenuItem1});
+            this.archivoToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
+            this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
+            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.archivoToolStripMenuItem.Text = "Archivo";
+            // 
+            // altaUsuarioToolStripMenuItem
+            // 
+            this.altaUsuarioToolStripMenuItem.Name = "altaUsuarioToolStripMenuItem";
+            this.altaUsuarioToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.altaUsuarioToolStripMenuItem.Text = "Alta Usuario";
+            this.altaUsuarioToolStripMenuItem.Click += new System.EventHandler(this.altaUsuarioToolStripMenuItem_Click);
+            // 
+            // cambioDeClaveToolStripMenuItem
+            // 
+            this.cambioDeClaveToolStripMenuItem.Name = "cambioDeClaveToolStripMenuItem";
+            this.cambioDeClaveToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.cambioDeClaveToolStripMenuItem.Text = "Cambio de Clave";
+            this.cambioDeClaveToolStripMenuItem.Click += new System.EventHandler(this.cambioDeClaveToolStripMenuItem_Click);
+            // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(161, 6);
+            // 
+            // salirToolStripMenuItem1
+            // 
+            this.salirToolStripMenuItem1.Name = "salirToolStripMenuItem1";
+            this.salirToolStripMenuItem1.Size = new System.Drawing.Size(164, 22);
+            this.salirToolStripMenuItem1.Text = "Salir";
+            this.salirToolStripMenuItem1.Click += new System.EventHandler(this.salirToolStripMenuItem1_Click);
+            // 
+            // reportesToolStripMenuItem
+            // 
+            this.reportesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.descargaInformaciónToolStripMenuItem,
+            this.bitacoraToolStripMenuItem});
+            this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
+            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.reportesToolStripMenuItem.Text = "Reportes";
+            // 
+            // descargaInformaciónToolStripMenuItem
+            // 
+            this.descargaInformaciónToolStripMenuItem.Name = "descargaInformaciónToolStripMenuItem";
+            this.descargaInformaciónToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.descargaInformaciónToolStripMenuItem.Text = "Descarga Información";
+            this.descargaInformaciónToolStripMenuItem.Click += new System.EventHandler(this.descargaInformaciónToolStripMenuItem_Click);
+            // 
+            // bitacoraToolStripMenuItem
+            // 
+            this.bitacoraToolStripMenuItem.Name = "bitacoraToolStripMenuItem";
+            this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.bitacoraToolStripMenuItem.Text = "Bitácora";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -421,6 +503,7 @@
             this.Controls.Add(this.tbBusqueda);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -433,6 +516,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcArticActualizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -473,6 +558,15 @@
         private DevExpress.XtraGrid.Columns.GridColumn colseleccionado;
         private DevExpress.XtraGrid.Columns.GridColumn colseleccionado1;
         private System.Windows.Forms.Button btnGuarda;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem altaUsuarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cambioDeClaveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator salirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem descargaInformaciónToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bitacoraToolStripMenuItem;
 
     }
 }

@@ -69,3 +69,7 @@ G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\obj\x86\Debug\
 G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\bin\Debug\FEncrypt.dll
 G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\bin\Debug\MySql.Data.dll
 G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\obj\x86\Debug\ActPreciosCarn.GUIs.frmLogin.resources
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\obj\x86\Debug\ActPreciosCarn.GUIs.frmAtlaUsuario.resources
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\obj\x86\Debug\ActPreciosCarn.GUIs.frmCambiarClave.resources
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\obj\x86\Debug\ActPreciosCarn.GUIs.frmBitacora.resources
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\obj\x86\Debug\ActPreciosCarn.GUIs.frmDescargaInfo.resources

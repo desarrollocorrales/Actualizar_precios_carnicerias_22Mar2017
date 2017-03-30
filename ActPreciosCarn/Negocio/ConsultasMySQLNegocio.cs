@@ -20,7 +20,6 @@ namespace ActPreciosCarn.Negocio
             return this._consultasMySQLDatos.pruebaConn();
         }
 
-
         public Modelos.Response validaAcceso(string usuario, string pass)
         {
             Modelos.Response result = new Modelos.Response();
@@ -50,12 +49,10 @@ namespace ActPreciosCarn.Negocio
             return result;
         }
 
-
         public void generaBitacora(string detalle)
         {
             this._consultasMySQLDatos.generaBitacora(detalle);
         }
-
 
         public int guardaActualizacion(List<Modelos.Articulos> seleccionados)
         {
@@ -66,6 +63,53 @@ namespace ActPreciosCarn.Negocio
             this._consultasMySQLDatos.guardaActualizacion(seleccionados, bloque + 1);
 
             return bloque + 1;
+        }
+
+        public Modelos.Response creaUsuario(string nombreCompleto, string correo, string usuario, string clave)
+        {
+            Modelos.Response result = new Modelos.Response();
+
+            // buscar si el usuario ya existe
+            bool us = this._consultasMySQLDatos.buscaUsuario(usuario.Trim().ToLower());
+
+            if (us)
+            {
+                result.status = Modelos.Estatus.ERROR;
+                result.error = "El usuario ya existe";
+                return result;
+            }
+
+            // buscar si el correo existe
+            bool corr = this._consultasMySQLDatos.buscaCorreo(correo.Trim().ToLower());
+
+            if (corr)
+            {
+                result.status = Modelos.Estatus.ERROR;
+                result.error = "El correo ya se registro para otro usuario";
+                return result;
+            }
+
+            // inserta el usuario
+            bool inserta = this._consultasMySQLDatos.insertaUsuario(nombreCompleto, correo, usuario, clave);
+
+            result.status = Modelos.Estatus.OK;
+
+            return result;
+        }
+
+        public bool validaClave(string claveActual, int _idUsuario)
+        {
+            return this._consultasMySQLDatos.validaClave(claveActual, _idUsuario);
+        }
+
+        public bool actualizaClave(string clave, int idUsuario, string usuario)
+        {
+            return this._consultasMySQLDatos.actualizaClave(clave, idUsuario, usuario);
+        }
+
+        public List<Modelos.Actualizacion> obtieneInformacion(string fechaIni, string fechaFin, int bloque, bool pendiente, bool realizado)
+        {
+            return this._consultasMySQLDatos.obtieneInformacion(fechaIni, fechaFin, bloque, pendiente, realizado);
         }
     }
 }
