@@ -11,7 +11,7 @@ namespace ActPreciosCarn.Negocio
 
         Modelos.Response validaAcceso(string usuario, string pass);
 
-        void generaBitacora(string detalle);
+        long generaBitacora(string detalle);
 
         int guardaActualizacion(List<Modelos.Articulos> seleccionados);
 
@@ -22,5 +22,15 @@ namespace ActPreciosCarn.Negocio
         bool actualizaClave(string clave, int idUsuario, string usuario);
 
         List<Modelos.Actualizacion> obtieneInformacion(string fechaIni, string fechaFin, int bloque, bool pendiente, bool realizado);
+
+        List<int> obtieneBloques(string fechaIni, string fechaFin);
+
+        Modelos.ActualizacionDet obtieneDetalle(int idActualizacion);
+
+        void insertaArticulos(List<Modelos.Articulos> articulos);
+
+        List<Modelos.Articulos> obtieneArticulos();
+
+        void guardaBitacora(List<Modelos.Articulos> anteriores, List<Modelos.Articulos> seleccionados, long resultado);
     }
 }

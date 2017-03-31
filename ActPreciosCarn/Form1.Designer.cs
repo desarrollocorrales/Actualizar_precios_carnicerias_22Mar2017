@@ -71,7 +71,7 @@
             this.salirToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.descargaInformaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bitacoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnCargaArtMicrosip = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gcPreciosArt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.articulosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -468,8 +468,7 @@
             // reportesToolStripMenuItem
             // 
             this.reportesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.descargaInformaciónToolStripMenuItem,
-            this.bitacoraToolStripMenuItem});
+            this.descargaInformaciónToolStripMenuItem});
             this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
             this.reportesToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.reportesToolStripMenuItem.Text = "Reportes";
@@ -477,15 +476,20 @@
             // descargaInformaciónToolStripMenuItem
             // 
             this.descargaInformaciónToolStripMenuItem.Name = "descargaInformaciónToolStripMenuItem";
-            this.descargaInformaciónToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.descargaInformaciónToolStripMenuItem.Text = "Descarga Información";
+            this.descargaInformaciónToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.descargaInformaciónToolStripMenuItem.Text = "Información Descargada";
             this.descargaInformaciónToolStripMenuItem.Click += new System.EventHandler(this.descargaInformaciónToolStripMenuItem_Click);
             // 
-            // bitacoraToolStripMenuItem
+            // btnCargaArtMicrosip
             // 
-            this.bitacoraToolStripMenuItem.Name = "bitacoraToolStripMenuItem";
-            this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.bitacoraToolStripMenuItem.Text = "Bitácora";
+            this.btnCargaArtMicrosip.Font = new System.Drawing.Font("Tahoma", 11.25F);
+            this.btnCargaArtMicrosip.Location = new System.Drawing.Point(336, 31);
+            this.btnCargaArtMicrosip.Name = "btnCargaArtMicrosip";
+            this.btnCargaArtMicrosip.Size = new System.Drawing.Size(246, 33);
+            this.btnCargaArtMicrosip.TabIndex = 12;
+            this.btnCargaArtMicrosip.Text = "Carga Artículos de Microsip";
+            this.btnCargaArtMicrosip.UseVisualStyleBackColor = true;
+            this.btnCargaArtMicrosip.Click += new System.EventHandler(this.btnCargaArtMicrosip_Click);
             // 
             // Form1
             // 
@@ -493,6 +497,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1376, 617);
+            this.Controls.Add(this.btnCargaArtMicrosip);
             this.Controls.Add(this.btnGuarda);
             this.Controls.Add(this.btnQuitarTodos);
             this.Controls.Add(this.btnQuitarArt);
@@ -566,7 +571,7 @@
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem descargaInformaciónToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem bitacoraToolStripMenuItem;
+        private System.Windows.Forms.Button btnCargaArtMicrosip;
 
     }
 }

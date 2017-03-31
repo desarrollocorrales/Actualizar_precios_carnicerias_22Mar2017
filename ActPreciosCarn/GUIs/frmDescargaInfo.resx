@@ -121,6 +121,20 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnCargarBloques.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAfRJREFUOE/N
+        VEtLAlEUnp/QT+iPBO1rITGVFU0pCGIRZC2soKwxMw0hei+SVrZoUdAiCvOFZlb4KAihwIKih0RCtTa/
+        6Z5hHBupVn1wmMs953xzz5OrBZ1tr75NDAx1OqM+SOt0sAl3TP1ztDkOh3vc8cSgL1cQt59Knr2iJONb
+        9yXcGeYSKX4y0MXMtaGzh+r0YjA26r95IxItgU2nK3IAH/jqneEGfuJgSiICoBDcseuZ3RfZCWfreq5g
+        XkrlIQNrF3dqPR7Ai4Fm0/zZc4czssHoOE5wx3eUxuaF1A0MlDnDWe8IeaAjW3wty9lXnGXCFvu+hcKE
+        gdGbuKRQvgOIEQ39nEQm7J07StNl30r2uhYZAWFafbmPKkIWxgPlqV0MrjIfTaAAyJmSTCb8LfB63h5I
+        Gr3JsFrQbszsPwPPNHhPQmpBWD8pThWQSHVyTfOnBSSemWgCvubFdB5SLuaj1LNqQrQCWoL5aAKvR4uR
+        n+CJHUuK714ozMavlBOiBsjKbZOhaRnx598xHJKSCC3LmWLF6JXDwJgpiXHuckYWoSM7+GBJMJMvQuQM
+        YWLQlaQ496+e31GesLrU+m5XtHJMsXKoAFDgbwiBnLQENsr1VRNYnphvrK6xzVuZBMsWdyjAn6YCOWu2
+        7TYiLRCQ1CoWx3HcJ8arQACrUqgmAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAYAEBAAAAEAIABoBAAAZgAAAAAAAAABACAA1TcAAM4EAAAwMAAAAQAgAKglAACjPAAAICAAAAEA

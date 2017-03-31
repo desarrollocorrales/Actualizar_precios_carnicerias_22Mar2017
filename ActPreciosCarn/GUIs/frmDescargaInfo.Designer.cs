@@ -42,9 +42,8 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.cbMostrarBloques = new System.Windows.Forms.CheckBox();
             this.gcActualizaciones = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.actualizacionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colidActualizacion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colnumBloque = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colfecha = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -53,11 +52,12 @@
             this.colheroico = new DevExpress.XtraGrid.Columns.GridColumn();
             this.collibertad = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colstatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btnCargarBloques = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gcActualizaciones)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.actualizacionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.actualizacionBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dtpFechaFin
@@ -109,6 +109,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Enabled = false;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.label4.Location = new System.Drawing.Point(212, 13);
             this.label4.Name = "label4";
@@ -119,6 +120,7 @@
             // cmbBloques
             // 
             this.cmbBloques.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBloques.Enabled = false;
             this.cmbBloques.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.cmbBloques.FormattingEnabled = true;
             this.cmbBloques.Location = new System.Drawing.Point(270, 10);
@@ -129,6 +131,8 @@
             // cbPendientes
             // 
             this.cbPendientes.AutoSize = true;
+            this.cbPendientes.Checked = true;
+            this.cbPendientes.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbPendientes.Location = new System.Drawing.Point(221, 130);
             this.cbPendientes.Name = "cbPendientes";
             this.cbPendientes.Size = new System.Drawing.Size(93, 21);
@@ -154,6 +158,7 @@
             this.btnBuscar.TabIndex = 9;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // cbMostrarBloques
             // 
@@ -164,6 +169,7 @@
             this.cbMostrarBloques.TabIndex = 10;
             this.cbMostrarBloques.Text = "Mostrar por Bloques";
             this.cbMostrarBloques.UseVisualStyleBackColor = true;
+            this.cbMostrarBloques.CheckedChanged += new System.EventHandler(this.cbMostrarBloques_CheckedChanged);
             // 
             // gcActualizaciones
             // 
@@ -172,10 +178,15 @@
             this.gcActualizaciones.Location = new System.Drawing.Point(12, 162);
             this.gcActualizaciones.MainView = this.gridView1;
             this.gcActualizaciones.Name = "gcActualizaciones";
-            this.gcActualizaciones.Size = new System.Drawing.Size(698, 415);
+            this.gcActualizaciones.Size = new System.Drawing.Size(698, 248);
             this.gcActualizaciones.TabIndex = 11;
             this.gcActualizaciones.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gcActualizaciones.DoubleClick += new System.EventHandler(this.gcActualizaciones_DoubleClick);
+            // 
+            // actualizacionBindingSource
+            // 
+            this.actualizacionBindingSource.DataSource = typeof(ActPreciosCarn.Modelos.Actualizacion);
             // 
             // gridView1
             // 
@@ -194,6 +205,85 @@
             this.gridView1.OptionsCustomization.AllowColumnMoving = false;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
+            // 
+            // colidActualizacion
+            // 
+            this.colidActualizacion.FieldName = "idActualizacion";
+            this.colidActualizacion.Name = "colidActualizacion";
+            // 
+            // colnumBloque
+            // 
+            this.colnumBloque.AppearanceCell.Options.UseTextOptions = true;
+            this.colnumBloque.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colnumBloque.Caption = "Bloque";
+            this.colnumBloque.FieldName = "numBloque";
+            this.colnumBloque.Name = "colnumBloque";
+            this.colnumBloque.Visible = true;
+            this.colnumBloque.VisibleIndex = 0;
+            this.colnumBloque.Width = 40;
+            // 
+            // colfecha
+            // 
+            this.colfecha.Caption = "Fecha";
+            this.colfecha.FieldName = "fecha";
+            this.colfecha.Name = "colfecha";
+            this.colfecha.Visible = true;
+            this.colfecha.VisibleIndex = 1;
+            this.colfecha.Width = 120;
+            // 
+            // colclaveArticulo
+            // 
+            this.colclaveArticulo.Caption = "Clave";
+            this.colclaveArticulo.FieldName = "claveArticulo";
+            this.colclaveArticulo.Name = "colclaveArticulo";
+            this.colclaveArticulo.Visible = true;
+            this.colclaveArticulo.VisibleIndex = 2;
+            this.colclaveArticulo.Width = 90;
+            // 
+            // colfidel
+            // 
+            this.colfidel.AppearanceCell.Options.UseTextOptions = true;
+            this.colfidel.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colfidel.AppearanceHeader.Options.UseTextOptions = true;
+            this.colfidel.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colfidel.Caption = "Fidel";
+            this.colfidel.FieldName = "fidel";
+            this.colfidel.Name = "colfidel";
+            this.colfidel.Visible = true;
+            this.colfidel.VisibleIndex = 3;
+            this.colfidel.Width = 100;
+            // 
+            // colheroico
+            // 
+            this.colheroico.AppearanceCell.Options.UseTextOptions = true;
+            this.colheroico.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colheroico.AppearanceHeader.Options.UseTextOptions = true;
+            this.colheroico.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colheroico.Caption = "Heróico";
+            this.colheroico.FieldName = "heroico";
+            this.colheroico.Name = "colheroico";
+            this.colheroico.Visible = true;
+            this.colheroico.VisibleIndex = 4;
+            this.colheroico.Width = 100;
+            // 
+            // collibertad
+            // 
+            this.collibertad.AppearanceCell.Options.UseTextOptions = true;
+            this.collibertad.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.collibertad.AppearanceHeader.Options.UseTextOptions = true;
+            this.collibertad.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.collibertad.Caption = "Libertad";
+            this.collibertad.FieldName = "libertad";
+            this.collibertad.Name = "collibertad";
+            this.collibertad.Visible = true;
+            this.collibertad.VisibleIndex = 5;
+            this.collibertad.Width = 100;
+            // 
+            // colstatus
+            // 
+            this.colstatus.FieldName = "status";
+            this.colstatus.Name = "colstatus";
             // 
             // panel1
             // 
@@ -207,81 +297,22 @@
             this.panel1.Size = new System.Drawing.Size(339, 44);
             this.panel1.TabIndex = 12;
             // 
-            // actualizacionBindingSource
-            // 
-            this.actualizacionBindingSource.DataSource = typeof(ActPreciosCarn.Modelos.Actualizacion);
-            // 
-            // colidActualizacion
-            // 
-            this.colidActualizacion.FieldName = "idActualizacion";
-            this.colidActualizacion.Name = "colidActualizacion";
-            // 
-            // colnumBloque
-            // 
-            this.colnumBloque.Caption = "Bloque";
-            this.colnumBloque.FieldName = "numBloque";
-            this.colnumBloque.Name = "colnumBloque";
-            this.colnumBloque.Visible = true;
-            this.colnumBloque.VisibleIndex = 0;
-            // 
-            // colfecha
-            // 
-            this.colfecha.Caption = "Fecha";
-            this.colfecha.FieldName = "fecha";
-            this.colfecha.Name = "colfecha";
-            this.colfecha.Visible = true;
-            this.colfecha.VisibleIndex = 1;
-            // 
-            // colclaveArticulo
-            // 
-            this.colclaveArticulo.Caption = "Clave";
-            this.colclaveArticulo.FieldName = "claveArticulo";
-            this.colclaveArticulo.Name = "colclaveArticulo";
-            this.colclaveArticulo.Visible = true;
-            this.colclaveArticulo.VisibleIndex = 2;
-            // 
-            // colfidel
-            // 
-            this.colfidel.Caption = "Fidel";
-            this.colfidel.FieldName = "fidel";
-            this.colfidel.Name = "colfidel";
-            this.colfidel.Visible = true;
-            this.colfidel.VisibleIndex = 3;
-            // 
-            // colheroico
-            // 
-            this.colheroico.Caption = "Heróico";
-            this.colheroico.FieldName = "heroico";
-            this.colheroico.Name = "colheroico";
-            this.colheroico.Visible = true;
-            this.colheroico.VisibleIndex = 4;
-            // 
-            // collibertad
-            // 
-            this.collibertad.Caption = "Libertad";
-            this.collibertad.FieldName = "libertad";
-            this.collibertad.Name = "collibertad";
-            this.collibertad.Visible = true;
-            this.collibertad.VisibleIndex = 5;
-            // 
-            // colstatus
-            // 
-            this.colstatus.FieldName = "status";
-            this.colstatus.Name = "colstatus";
-            // 
             // btnCargarBloques
             // 
+            this.btnCargarBloques.Enabled = false;
+            this.btnCargarBloques.Image = ((System.Drawing.Image)(resources.GetObject("btnCargarBloques.Image")));
             this.btnCargarBloques.Location = new System.Drawing.Point(171, 6);
             this.btnCargarBloques.Name = "btnCargarBloques";
             this.btnCargarBloques.Size = new System.Drawing.Size(30, 30);
             this.btnCargarBloques.TabIndex = 11;
             this.btnCargarBloques.UseVisualStyleBackColor = true;
+            this.btnCargarBloques.Click += new System.EventHandler(this.btnCargarBloques_Click);
             // 
             // frmDescargaInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(722, 589);
+            this.ClientSize = new System.Drawing.Size(722, 422);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.gcActualizaciones);
             this.Controls.Add(this.btnBuscar);
@@ -293,17 +324,19 @@
             this.Controls.Add(this.dtpFechaInicio);
             this.Controls.Add(this.dtpFechaFin);
             this.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
             this.Name = "frmDescargaInfo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Descarga Información";
             this.Load += new System.EventHandler(this.frmDescargaInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gcActualizaciones)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.actualizacionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.actualizacionBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

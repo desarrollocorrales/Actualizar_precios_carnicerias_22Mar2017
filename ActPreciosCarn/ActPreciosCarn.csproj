@@ -106,12 +106,6 @@
     <Compile Include="GUIs\frmAtlaUsuario.Designer.cs">
       <DependentUpon>frmAtlaUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUIs\frmBitacora.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUIs\frmBitacora.Designer.cs">
-      <DependentUpon>frmBitacora.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUIs\frmCambiarClave.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,7 +130,14 @@
     <Compile Include="GUIs\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIs\frmVerPrecios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\frmVerPrecios.Designer.cs">
+      <DependentUpon>frmVerPrecios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\Actualizacion.cs" />
+    <Compile Include="Modelos\ActualizacionDet.cs" />
     <Compile Include="Modelos\Articulos.cs" />
     <Compile Include="Modelos\ConexionFB.cs" />
     <Compile Include="Modelos\ConexionMySQL.cs" />
@@ -160,9 +161,6 @@
     <EmbeddedResource Include="GUIs\frmAtlaUsuario.resx">
       <DependentUpon>frmAtlaUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUIs\frmBitacora.resx">
-      <DependentUpon>frmBitacora.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GUIs\frmCambiarClave.resx">
       <DependentUpon>frmCambiarClave.cs</DependentUpon>
     </EmbeddedResource>
@@ -174,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\frmVerPrecios.resx">
+      <DependentUpon>frmVerPrecios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

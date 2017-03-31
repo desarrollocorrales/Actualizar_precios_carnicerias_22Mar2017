@@ -49,9 +49,9 @@ namespace ActPreciosCarn.Negocio
             return result;
         }
 
-        public void generaBitacora(string detalle)
+        public long generaBitacora(string detalle)
         {
-            this._consultasMySQLDatos.generaBitacora(detalle);
+            return this._consultasMySQLDatos.generaBitacora(detalle);
         }
 
         public int guardaActualizacion(List<Modelos.Articulos> seleccionados)
@@ -110,6 +110,31 @@ namespace ActPreciosCarn.Negocio
         public List<Modelos.Actualizacion> obtieneInformacion(string fechaIni, string fechaFin, int bloque, bool pendiente, bool realizado)
         {
             return this._consultasMySQLDatos.obtieneInformacion(fechaIni, fechaFin, bloque, pendiente, realizado);
+        }
+
+        public List<int> obtieneBloques(string fechaIni, string fechaFin)
+        {
+            return this._consultasMySQLDatos.obtieneBloques(fechaIni, fechaFin);
+        }
+
+        public Modelos.ActualizacionDet obtieneDetalle(int idActualizacion)
+        {
+            return this._consultasMySQLDatos.obtieneDetalle(idActualizacion);
+        }
+
+        public void insertaArticulos(List<Modelos.Articulos> articulos)
+        {
+            this._consultasMySQLDatos.insertaArticulos(articulos);
+        }
+
+        public List<Modelos.Articulos> obtieneArticulos()
+        {
+            return this._consultasMySQLDatos.obtieneArticulos();
+        }
+
+        public void guardaBitacora(List<Modelos.Articulos> anteriores, List<Modelos.Articulos> seleccionados, long resultado)
+        {
+            this._consultasMySQLDatos.guardaBitacora(anteriores, seleccionados, resultado);
         }
     }
 }

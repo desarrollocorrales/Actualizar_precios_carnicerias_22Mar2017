@@ -11,6 +11,9 @@ namespace ActPreciosCarn.Modelos
         public int numBloque { get; set; }
         public string fecha { get; set; }
         public string claveArticulo { get; set; }
+
+        public string nombreArticulo { get; set; }
+
         public string fidel { get; set; }
         public string heroico { get; set; }
         public string libertad { get; set; }

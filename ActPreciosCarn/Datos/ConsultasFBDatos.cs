@@ -114,7 +114,7 @@ namespace ActPreciosCarn.Datos
 
                                 // lista
                                 if (res.reader["LISTA"] is DBNull) ent.precLista = null;
-                                else ent.precLista = Convert.ToInt16(res.reader["LISTA"]);
+                                else ent.precLista = Convert.ToDecimal(res.reader["LISTA"]);
 
                                 // minimo
                                 if (res.reader["MINIMO"] is DBNull) ent.precMinimo = null;

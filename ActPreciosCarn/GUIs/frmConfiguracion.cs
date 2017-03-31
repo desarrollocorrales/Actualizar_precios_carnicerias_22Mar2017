@@ -188,6 +188,7 @@ namespace ActPreciosCarn.GUIs
 
                 if (result.status == FEncrypt.Estatus.OK)
                 {
+                    // firebird
                     Modelos.ConectionString.connFB = string.Format(
                                 "User={0};Password={1};Database={2};DataSource={3};Port={4}",
                                 this.tbUsuarioM.Text,
@@ -196,6 +197,9 @@ namespace ActPreciosCarn.GUIs
                                 this.tbServidorM.Text,
                                 this.tbPuertoM.Text);
 
+                    Modelos.Login.servidor = this.tbServidorM.Text;
+
+                    // mysql
                     Modelos.ConectionString.connMySQL = string.Format(
                                 "Data Source={0};database={1};User Id={2};password={3};",
                                 this.tbServidorMs.Text,

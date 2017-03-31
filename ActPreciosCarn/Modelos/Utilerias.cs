@@ -32,6 +32,8 @@ namespace ActPreciosCarn.Modelos
         public static int idUsuario;
         public static string nombre;
         public static string usuario;
+
+        public static string servidor;
     }
 
     public class Utilerias

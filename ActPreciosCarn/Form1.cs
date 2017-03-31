@@ -69,25 +69,22 @@ namespace ActPreciosCarn
         {
             try
             {
-                // obtiene precios_empresas
-                Dictionary<string, long> precEmpr = this._consultasFBNegocio.getPreciosEmpresas();
-
                 // consulta articulos de microsip
-                this._articulos = this._consultasFBNegocio.obtieneArticulos(precEmpr);
+                this._articulos = this._consultasMySQLNegocio.obtieneArticulos();
 
                 this.gcPreciosArt.DataSource = this._articulos;
-
+                /*
                 RepositoryItemTextEdit edit = new RepositoryItemTextEdit();
                 edit.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
                 edit.Mask.EditMask = "#,###,##0.00####";
                 this.gcPreciosArt.RepositoryItems.Add(edit);
-                gridView1.Columns[3].ColumnEdit = edit;
                 gridView1.Columns[4].ColumnEdit = edit;
                 gridView1.Columns[5].ColumnEdit = edit;
                 gridView1.Columns[6].ColumnEdit = edit;
                 gridView1.Columns[7].ColumnEdit = edit;
                 gridView1.Columns[8].ColumnEdit = edit;
-
+                gridView1.Columns[9].ColumnEdit = edit;
+                */
                 this.gridView1.BestFitColumns();
             }
             catch (Exception Ex)
@@ -250,8 +247,15 @@ namespace ActPreciosCarn
                     }
 
                     // bitacora
-                    this._consultasMySQLNegocio.generaBitacora(
+                    long resultado = this._consultasMySQLNegocio.generaBitacora(
                         "Bloque de actualización creado '" + respuesta + "': " + lista.Trim());
+
+                    // guarda bitacora detalle
+                    // lista de precios anteriores
+                    List<Modelos.Articulos> anteriores =
+                        this._articulos.Where(w => seleccionados.Any(a => a.clave == w.clave)).ToList();
+
+                    this._consultasMySQLNegocio.guardaBitacora(anteriores, seleccionados, resultado);
 
                     MessageBox.Show("Proceso concluido", "Actualizar Precios Carnicerías", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -323,6 +327,34 @@ namespace ActPreciosCarn
                 frmDescargaInfo form = new frmDescargaInfo();
 
                 form.ShowDialog();
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Actualizar Precios Carnicerías", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void btnCargaArtMicrosip_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // obtiene precios_empresas
+                Dictionary<string, long> precEmpr = this._consultasFBNegocio.getPreciosEmpresas();
+
+                // consulta articulos de microsip
+                this._articulos = this._consultasFBNegocio.obtieneArticulos(precEmpr);
+
+                this.gcPreciosArt.DataSource = this._articulos;
+
+                this.gridView1.BestFitColumns();
+
+                // insertar articulos en mysql
+                this._consultasMySQLNegocio.insertaArticulos(this._articulos);
+                
+                // bitacora
+                this._consultasMySQLNegocio.generaBitacora(
+                    "Articulos cargados de microsip: servidor - " + Modelos.Login.servidor + " - ");
+                
             }
             catch (Exception Ex)
             {
