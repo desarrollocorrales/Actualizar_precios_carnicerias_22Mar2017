@@ -109,7 +109,7 @@
             this.tbBaseDeDatosMs.Location = new System.Drawing.Point(13, 189);
             this.tbBaseDeDatosMs.Name = "tbBaseDeDatosMs";
             this.tbBaseDeDatosMs.Size = new System.Drawing.Size(235, 24);
-            this.tbBaseDeDatosMs.TabIndex = 12;
+            this.tbBaseDeDatosMs.TabIndex = 10;
             // 
             // label5
             // 
@@ -127,7 +127,7 @@
             this.btnProbarConMysql.Location = new System.Drawing.Point(75, 225);
             this.btnProbarConMysql.Name = "btnProbarConMysql";
             this.btnProbarConMysql.Size = new System.Drawing.Size(106, 23);
-            this.btnProbarConMysql.TabIndex = 14;
+            this.btnProbarConMysql.TabIndex = 11;
             this.btnProbarConMysql.Text = "Probar Conexión";
             this.btnProbarConMysql.UseVisualStyleBackColor = true;
             this.btnProbarConMysql.Click += new System.EventHandler(this.btnProbarConMysql_Click);
@@ -186,7 +186,7 @@
             this.tbBaseDatosM.Location = new System.Drawing.Point(13, 234);
             this.tbBaseDatosM.Name = "tbBaseDatosM";
             this.tbBaseDatosM.Size = new System.Drawing.Size(235, 24);
-            this.tbBaseDatosM.TabIndex = 25;
+            this.tbBaseDatosM.TabIndex = 5;
             // 
             // label9
             // 
@@ -204,7 +204,7 @@
             this.tbServidorM.Location = new System.Drawing.Point(13, 36);
             this.tbServidorM.Name = "tbServidorM";
             this.tbServidorM.Size = new System.Drawing.Size(235, 24);
-            this.tbServidorM.TabIndex = 16;
+            this.tbServidorM.TabIndex = 1;
             // 
             // label1
             // 
@@ -232,7 +232,7 @@
             this.tbPuertoM.Location = new System.Drawing.Point(13, 183);
             this.tbPuertoM.Name = "tbPuertoM";
             this.tbPuertoM.Size = new System.Drawing.Size(235, 24);
-            this.tbPuertoM.TabIndex = 21;
+            this.tbPuertoM.TabIndex = 4;
             // 
             // label7
             // 
@@ -250,7 +250,7 @@
             this.btnProbarConnMicrosip.Location = new System.Drawing.Point(75, 269);
             this.btnProbarConnMicrosip.Name = "btnProbarConnMicrosip";
             this.btnProbarConnMicrosip.Size = new System.Drawing.Size(106, 23);
-            this.btnProbarConnMicrosip.TabIndex = 23;
+            this.btnProbarConnMicrosip.TabIndex = 6;
             this.btnProbarConnMicrosip.Text = "Probar Conexión";
             this.btnProbarConnMicrosip.UseVisualStyleBackColor = true;
             this.btnProbarConnMicrosip.Click += new System.EventHandler(this.btnProbarConnMicrosip_Click);
@@ -261,7 +261,7 @@
             this.tbContraseniaM.Location = new System.Drawing.Point(13, 135);
             this.tbContraseniaM.Name = "tbContraseniaM";
             this.tbContraseniaM.Size = new System.Drawing.Size(235, 24);
-            this.tbContraseniaM.TabIndex = 18;
+            this.tbContraseniaM.TabIndex = 3;
             this.tbContraseniaM.UseSystemPasswordChar = true;
             // 
             // label8
@@ -280,7 +280,7 @@
             this.tbUsuarioM.Location = new System.Drawing.Point(13, 84);
             this.tbUsuarioM.Name = "tbUsuarioM";
             this.tbUsuarioM.Size = new System.Drawing.Size(235, 24);
-            this.tbUsuarioM.TabIndex = 17;
+            this.tbUsuarioM.TabIndex = 2;
             // 
             // btnGuardar
             // 
@@ -288,7 +288,7 @@
             this.btnGuardar.Location = new System.Drawing.Point(164, 603);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(96, 30);
-            this.btnGuardar.TabIndex = 3;
+            this.btnGuardar.TabIndex = 12;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);

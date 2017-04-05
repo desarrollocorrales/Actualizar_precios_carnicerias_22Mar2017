@@ -59,10 +59,8 @@ G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\bin\Debug\de\D
 G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\bin\Debug\es\DevExpress.XtraTreeList.v14.1.resources.dll
 G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\bin\Debug\ja\DevExpress.XtraTreeList.v14.1.resources.dll
 G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\bin\Debug\ru\DevExpress.XtraTreeList.v14.1.resources.dll
-G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\obj\x86\Debug\ActPreciosCarn.Form1.resources
 G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\obj\x86\Debug\ActPreciosCarn.GUIs.frmAcceso.resources
 G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\obj\x86\Debug\ActPreciosCarn.GUIs.frmAtlaUsuario.resources
-G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\obj\x86\Debug\ActPreciosCarn.GUIs.frmBitacora.resources
 G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\obj\x86\Debug\ActPreciosCarn.GUIs.frmCambiarClave.resources
 G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\obj\x86\Debug\ActPreciosCarn.GUIs.frmConfiguracion.resources
 G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\obj\x86\Debug\ActPreciosCarn.GUIs.frmDescargaInfo.resources
@@ -73,3 +71,5 @@ G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\obj\x86\Debug\
 G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\obj\x86\Debug\ActPreciosCarn.exe.licenses
 G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\obj\x86\Debug\ActPreciosCarn.exe
 G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\obj\x86\Debug\ActPreciosCarn.pdb
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\obj\x86\Debug\ActPreciosCarn.FormPrincipal.resources
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\ActPreciosCarn\obj\x86\Debug\ActPreciosCarn.csprojResolveAssemblyReference.cache

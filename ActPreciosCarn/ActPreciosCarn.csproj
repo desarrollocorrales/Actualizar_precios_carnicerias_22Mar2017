@@ -88,11 +88,11 @@
     <Compile Include="Datos\ConsultasMySQLDatos.cs" />
     <Compile Include="Datos\IConsultasFBDatos.cs" />
     <Compile Include="Datos\IConsultasMySQLDatos.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormPrincipal.Designer.cs">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\frmAcceso.cs">
       <SubType>Form</SubType>
@@ -152,8 +152,8 @@
     <Compile Include="Negocio\IConsultasMySQLNegocio.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FormPrincipal.resx">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\frmAcceso.resx">
       <DependentUpon>frmAcceso.cs</DependentUpon>

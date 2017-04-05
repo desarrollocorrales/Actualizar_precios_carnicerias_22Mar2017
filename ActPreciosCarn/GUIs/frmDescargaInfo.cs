@@ -61,6 +61,9 @@ namespace ActPreciosCarn.GUIs
 
                 List<Modelos.Actualizacion> resultado = this._consultasMySQLNegocio.obtieneInformacion(fechaIni, fechaFin, bloque, pendiente, realizado);
 
+                if (!pendiente && !realizado)
+                    resultado = new List<Modelos.Actualizacion>();
+
                 if (resultado.Count == 0)
                 {
                     this.gcActualizaciones.DataSource = new List<Modelos.Actualizacion>();

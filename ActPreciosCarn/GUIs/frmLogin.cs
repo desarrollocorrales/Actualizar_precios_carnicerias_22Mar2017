@@ -181,7 +181,7 @@ namespace ActPreciosCarn.GUIs
                         "Nuevo Acceso a usuario '" + Modelos.Login.nombre + "'");
 
                     this.Hide();
-                    new Form1().ShowDialog();
+                    new FormPrincipal().ShowDialog();
                     this.Close();
                 }
                 else throw new Exception(resp.error);

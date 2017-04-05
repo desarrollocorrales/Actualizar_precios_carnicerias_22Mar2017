@@ -1,0 +1,17 @@
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\DescargaPreciosCarn\obj\x86\Debug\DescargaPreciosCarn.csprojResolveAssemblyReference.cache
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\DescargaPreciosCarn\obj\x86\Debug\DescargaPreciosCarn.GUIs.frmAccesso.resources
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\DescargaPreciosCarn\obj\x86\Debug\DescargaPreciosCarn.GUIs.frmConfiguracion.resources
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\DescargaPreciosCarn\obj\x86\Debug\DescargaPreciosCarn.Properties.Resources.resources
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\DescargaPreciosCarn\obj\x86\Debug\DescargaPreciosCarn.csproj.GenerateResource.Cache
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\DescargaPreciosCarn\bin\Debug\DescargaPreciosCarn.exe.config
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\DescargaPreciosCarn\bin\Debug\DescargaPreciosCarn.exe
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\DescargaPreciosCarn\bin\Debug\DescargaPreciosCarn.pdb
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\DescargaPreciosCarn\bin\Debug\FEncrypt.dll
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\DescargaPreciosCarn\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\DescargaPreciosCarn\bin\Debug\MySql.Data.dll
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\DescargaPreciosCarn\bin\Debug\FirebirdSql.Data.FirebirdClient.pdb
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\DescargaPreciosCarn\obj\x86\Debug\DescargaPreciosCarn.exe
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\DescargaPreciosCarn\obj\x86\Debug\DescargaPreciosCarn.pdb
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\DescargaPreciosCarn\obj\x86\Debug\DescargaPreciosCarn.FormPrincipal.resources
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\DescargaPreciosCarn\obj\x86\Debug\DescargaPreciosCarn.GUIs.frmLogin.resources
+G:\Github\Actualizar_precios_carnicerias_22Mar2017\DescargaPreciosCarn\obj\x86\Debug\DescargaPreciosCarn.exe.licenses

@@ -501,6 +501,8 @@ namespace ActPreciosCarn.Datos
                 if (realizado)
                     sql += "and (ac.status = 'R')";
 
+            sql += " order by ac.num_bloque asc";
+
             // define conexion con la cadena de conexion
             using (var conn = this._conexionMySQL.getConexionMySQL())
             {

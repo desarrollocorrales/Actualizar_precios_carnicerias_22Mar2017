@@ -13,13 +13,13 @@ using DevExpress.XtraEditors.Repository;
 
 namespace ActPreciosCarn
 {
-    public partial class Form1 : Form
+    public partial class FormPrincipal : Form
     {
         private IConsultasFBNegocio _consultasFBNegocio;
         private IConsultasMySQLNegocio _consultasMySQLNegocio;
         private List<Modelos.Articulos> _articulos = new List<Modelos.Articulos>();
 
-        public Form1()
+        public FormPrincipal()
         {
             InitializeComponent();
 
