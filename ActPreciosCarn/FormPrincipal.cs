@@ -69,22 +69,11 @@ namespace ActPreciosCarn
         {
             try
             {
-                // consulta articulos de microsip
+                // consulta articulos de mysql
                 this._articulos = this._consultasMySQLNegocio.obtieneArticulos();
 
                 this.gcPreciosArt.DataSource = this._articulos;
-                /*
-                RepositoryItemTextEdit edit = new RepositoryItemTextEdit();
-                edit.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-                edit.Mask.EditMask = "#,###,##0.00####";
-                this.gcPreciosArt.RepositoryItems.Add(edit);
-                gridView1.Columns[4].ColumnEdit = edit;
-                gridView1.Columns[5].ColumnEdit = edit;
-                gridView1.Columns[6].ColumnEdit = edit;
-                gridView1.Columns[7].ColumnEdit = edit;
-                gridView1.Columns[8].ColumnEdit = edit;
-                gridView1.Columns[9].ColumnEdit = edit;
-                */
+
                 this.gridView1.BestFitColumns();
             }
             catch (Exception Ex)
@@ -232,7 +221,9 @@ namespace ActPreciosCarn
 
                 if (seleccionados.Count == 0) throw new Exception("No se han cargado los artículos a actualizar");
 
-                int respuesta = this._consultasMySQLNegocio.guardaActualizacion(seleccionados);
+                string fecha1 = getFechaFireBird();
+
+                int respuesta = this._consultasMySQLNegocio.guardaActualizacion(seleccionados, fecha1);
 
                 if (respuesta < 0)
                     throw new Exception("Problemas al guardar los cambios");
@@ -246,9 +237,12 @@ namespace ActPreciosCarn
                         lista += articulos.clave + " - " + articulos.articulo + "; ";
                     }
 
+                    string fecha = getFechaFireBird();
+
                     // bitacora
                     long resultado = this._consultasMySQLNegocio.generaBitacora(
-                        "Bloque de actualización creado '" + respuesta + "': " + lista.Trim());
+                        "Bloque de actualización creado '" + respuesta + "': " + lista.Trim(),
+                        fecha);
 
                     // guarda bitacora detalle
                     // lista de precios anteriores
@@ -272,9 +266,11 @@ namespace ActPreciosCarn
         {
             try
             {
+                string fecha = getFechaFireBird();
+
                 // bitacora
                 this._consultasMySQLNegocio.generaBitacora(
-                    "Sesión cerrada por el usuario '" + Modelos.Login.nombre + "'");
+                    "Sesión cerrada por el usuario '" + Modelos.Login.nombre + "'", fecha);
             }
             catch (Exception Ex)
             {
@@ -350,16 +346,34 @@ namespace ActPreciosCarn
 
                 // insertar articulos en mysql
                 this._consultasMySQLNegocio.insertaArticulos(this._articulos);
-                
+
+                string fecha = getFechaFireBird();
+
                 // bitacora
                 this._consultasMySQLNegocio.generaBitacora(
-                    "Articulos cargados de microsip: servidor - " + Modelos.Login.servidor + " - ");
+                    "Articulos cargados de microsip: servidor - " + Modelos.Login.servidor + " - ", fecha);
                 
             }
             catch (Exception Ex)
             {
                 MessageBox.Show(Ex.Message, "Actualizar Precios Carnicerías", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        public string getFechaFireBird()
+        {
+            string result = string.Empty;
+
+            try
+            {
+                result = this._consultasFBNegocio.getFecha();
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Actualizar Precios Carnicerías", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            return result;
         }
     }
 }

@@ -18,5 +18,7 @@ namespace DescargaPreciosCarn.Datos
         bool actPrecio(long precioArticuloId, decimal? precio);
 
         bool insertPrecio(long articuloId, long precioEmpresaId, decimal? precLista);
+
+        string getFecha();
     }
 }

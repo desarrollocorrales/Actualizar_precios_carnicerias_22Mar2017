@@ -15,12 +15,14 @@ namespace ActPreciosCarn.GUIs
     {
         private bool _defConfig;
         private IConsultasMySQLNegocio _consultasMySQLNegocio;
+        private IConsultasFBNegocio _consultasFBNegocio;
 
         public frmLogin()
         {
             InitializeComponent();
 
             this.ActiveControl = this.tbUsuario;
+            this._consultasFBNegocio = new ConsultasFBNegocio();
         }
 
         private void btnConfig_Click(object sender, EventArgs e)
@@ -122,6 +124,7 @@ namespace ActPreciosCarn.GUIs
                                 usuarioMs,
                                 contraMs);
 
+                    Modelos.Login.servidor = servidorM;
                 }
 
                 this._defConfig = true;
@@ -159,6 +162,7 @@ namespace ActPreciosCarn.GUIs
             try
             {
                 this._consultasMySQLNegocio = new ConsultasMySQLNegocio();
+                this._consultasFBNegocio = new ConsultasFBNegocio();
 
                 // validaciones
                 if (string.IsNullOrEmpty(this.tbUsuario.Text))
@@ -176,9 +180,11 @@ namespace ActPreciosCarn.GUIs
                     Modelos.Login.nombre = resp.usuario.nombreCompleto;
                     Modelos.Login.usuario = resp.usuario.usuario;
 
+                    string fecha = getFechaFireBird();
+
                     // bitacora
                     this._consultasMySQLNegocio.generaBitacora(
-                        "Nuevo Acceso a usuario '" + Modelos.Login.nombre + "'");
+                        "Nuevo Acceso a usuario '" + Modelos.Login.nombre + "'", fecha);
 
                     this.Hide();
                     new FormPrincipal().ShowDialog();
@@ -190,6 +196,22 @@ namespace ActPreciosCarn.GUIs
             {
                 MessageBox.Show(Ex.Message, "Login", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        public string getFechaFireBird()
+        {
+            string result = string.Empty;
+
+            try
+            {
+                result = this._consultasFBNegocio.getFecha();
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Actualizar Precios Carnicerías", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            return result;
         }
     }
 }

@@ -44,5 +44,10 @@ namespace DescargaPreciosCarn.Negocio
         {
             return this._consultasFBDatos.insertPrecio(articuloId, precioEmpresaId, precLista);
         }
+
+        public string getFecha()
+        {
+            return this._consultasFBDatos.getFecha();
+        }
     }
 }

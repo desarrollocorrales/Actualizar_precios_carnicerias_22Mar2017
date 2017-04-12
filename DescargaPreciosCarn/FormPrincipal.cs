@@ -80,9 +80,11 @@ namespace DescargaPreciosCarn
 
                     this.gridView1.BestFitColumns();
 
+                    string fecha = getFechaFireBird();
+
                     // bitacora
                     this._consultasMySQLNegocio.generaBitacora(
-                        "Información pendiente consultada en '" + Modelos.Login.sucursal + "'");
+                        "Información pendiente consultada en '" + Modelos.Login.sucursal + "'", fecha);
 
                 }
                 else
@@ -156,7 +158,7 @@ namespace DescargaPreciosCarn
                         {
                             if (art.precMayoreo != null)
                                 // se inserta si no existe FB
-                                this._consultasFBNegocio.insertPrecio(artFB.articuloId, precEmpr["prec.mayoreo"], art.precLista);
+                                this._consultasFBNegocio.insertPrecio(artFB.articuloId, precEmpr["prec.mayoreo"], art.precMayoreo);
                         }
 
 
@@ -209,13 +211,15 @@ namespace DescargaPreciosCarn
 
 
 
+                        string fecha = getFechaFireBird();
+
                         // se libera la actualizacion del articulo MS
                         bool resultado = this._consultasMySQLNegocio.liberaArticulo(art.clave, art.bloque, this._sucursal.ToLower());
 
                         // bitacora
                         this._consultasMySQLNegocio.generaBitacora(
                         "Descarga completa del artículo con clave '" + art.clave +
-                        "' en el bloque '" + art.bloque + "' y en la sucursal '" + Modelos.Login.sucursal + "'");
+                        "' en el bloque '" + art.bloque + "' y en la sucursal '" + Modelos.Login.sucursal + "'", fecha);
                     }
                     else
                     {
@@ -225,11 +229,13 @@ namespace DescargaPreciosCarn
                             ,"Actualizar Precios Carnicerías"
                             , MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                        string fecha = getFechaFireBird();
+
                         // mandar mensaje y generar bitacora
                         this._consultasMySQLNegocio.generaBitacora(
                         "El artículo '" + art.articulo + "' con clave '" + art.clave +
                         "' en el bloque '" + art.bloque + "' y en la sucursal '" + Modelos.Login.sucursal +
-                        "' no se encuetra Activo en la sucursal");
+                        "' no se encuetra Activo en la sucursal", fecha);
 
                     }
                 }
@@ -240,9 +246,11 @@ namespace DescargaPreciosCarn
                 
                 if (resAct)
                 {
+                    string fecha = getFechaFireBird();
+
                     // bitacora
                     this._consultasMySQLNegocio.generaBitacora(
-                        "Bloque '" + this._articulos[0].bloque + "' descargado completamente en la sucursal '" + Modelos.Login.sucursal);
+                        "Bloque '" + this._articulos[0].bloque + "' descargado completamente en la sucursal '" + Modelos.Login.sucursal, fecha);
 
                     MessageBox.Show("Proceso Concluido", "Actualizar Precios Carnicerías", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -258,10 +266,12 @@ namespace DescargaPreciosCarn
                 // de ser correcto, se actualizara el estatus general del articulo
                 bool actTodosBloque = this._consultasMySQLNegocio.liberarBloques(bloque);
 
+                string fecha2 = getFechaFireBird();
+
                 if (actTodosBloque)
                     // bitacora
                     this._consultasMySQLNegocio.generaBitacora(
-                        "Bloque '" + bloque + "' descargado completamente en todas las sucursales");
+                        "Bloque '" + bloque + "' descargado completamente en todas las sucursales", fecha2);
 
             }
             catch (Exception Ex)
@@ -275,6 +285,38 @@ namespace DescargaPreciosCarn
             try
             {
                 this.verificarInformacionPendiente();
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Actualizar Precios Carnicerías", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        public string getFechaFireBird()
+        {
+            string result = string.Empty;
+
+            try
+            {
+                result = this._consultasFBNegocio.getFecha();
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Actualizar Precios Carnicerías", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            return result;
+        }
+
+        private void FormPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                string fecha = getFechaFireBird();
+
+                // bitacora
+                this._consultasMySQLNegocio.generaBitacora(
+                    "Sesión cerrada por el usuario '" + Modelos.Login.nombre + "'" + "en sucursal '" + Modelos.Login.sucursal + "'", fecha);
             }
             catch (Exception Ex)
             {

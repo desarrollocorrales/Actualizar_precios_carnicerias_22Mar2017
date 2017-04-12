@@ -15,6 +15,7 @@ namespace DescargaPreciosCarn.GUIs
     {
         private bool _defConfig;
         private IConsultasMySQLNegocio _consultasMySQLNegocio;
+        private IConsultasFBNegocio _consultasFBNegocio;
 
         public frmLogin()
         {
@@ -161,6 +162,7 @@ namespace DescargaPreciosCarn.GUIs
             try
             {
                 this._consultasMySQLNegocio = new ConsultasMySQLNegocio();
+                this._consultasFBNegocio = new ConsultasFBNegocio();
 
                 // validaciones
                 if (string.IsNullOrEmpty(this.tbUsuario.Text))
@@ -178,9 +180,11 @@ namespace DescargaPreciosCarn.GUIs
                     Modelos.Login.nombre = resp.usuario.nombreCompleto;
                     Modelos.Login.usuario = resp.usuario.usuario;
 
+                    string fecha = getFechaFireBird();
+
                     // bitacora
                     this._consultasMySQLNegocio.generaBitacora(
-                        "Nuevo Acceso a usuario '" + Modelos.Login.nombre + "' en '" + Modelos.Login.sucursal + "'");
+                        "Nuevo Acceso a usuario '" + Modelos.Login.nombre + "' en '" + Modelos.Login.sucursal + "'", fecha);
 
                     this.Hide();
                     new FormPrincipal().ShowDialog();
@@ -192,6 +196,22 @@ namespace DescargaPreciosCarn.GUIs
             {
                 MessageBox.Show(Ex.Message, "Login", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        public string getFechaFireBird()
+        {
+            string result = string.Empty;
+
+            try
+            {
+                result = this._consultasFBNegocio.getFecha();
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Actualizar Precios Carnicerías", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            return result;
         }
     }
 }

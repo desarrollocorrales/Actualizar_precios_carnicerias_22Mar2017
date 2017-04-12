@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using ActPreciosCarn.Modelos;
 using MySql.Data.MySqlClient;
+using System.Net.Sockets;
+using System.Net;
 
 namespace ActPreciosCarn.Datos
 {
@@ -136,7 +138,7 @@ namespace ActPreciosCarn.Datos
         }
 
         // genera bitacora
-        public long generaBitacora(string detalle)
+        public long generaBitacora(string detalle, string fecha)
         {
             int rows = 0;
             long result = 0;
@@ -151,10 +153,13 @@ namespace ActPreciosCarn.Datos
 
                     string bitacora =
                         "insert into bitacora (id_usuario, fecha, detalle, host) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()))";
+                        // "values (@idusu, @fecha, @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()))";
+                        "values (@idusu, @fecha, @detalle, @host)";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", detalle);
+                    cmd.Parameters.AddWithValue("@fecha", fecha);
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     ManejoSql_My res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -208,7 +213,7 @@ namespace ActPreciosCarn.Datos
         }
 
         // guarda actualizacion
-        public bool guardaActualizacion(List<Articulos> seleccionados, int bloque)
+        public bool guardaActualizacion(List<Articulos> seleccionados, int bloque, string fecha)
         {
             MySqlTransaction trans;
 
@@ -241,7 +246,7 @@ namespace ActPreciosCarn.Datos
                             // inserta actuaizacion
                             sql =
                                 "INSERT INTO actualizacion (num_bloque, fecha, clave_articulo, fidel, heroico, libertad, status) " +
-                                "VALUES (@numBloque, now(), @claveArticulo, @fidel, @heroico, @libertad, @status)";
+                                "VALUES (@numBloque, @fecha, @claveArticulo, @fidel, @heroico, @libertad, @status)";
 
                             // define parametros
                             cmd.Parameters.AddWithValue("@numBloque", bloque);
@@ -250,6 +255,7 @@ namespace ActPreciosCarn.Datos
                             cmd.Parameters.AddWithValue("@heroico", "P");
                             cmd.Parameters.AddWithValue("@libertad", "P");
                             cmd.Parameters.AddWithValue("@status", "P");
+                            cmd.Parameters.AddWithValue("@fecha", fecha);
 
                             ManejoSql_My res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
 
@@ -340,7 +346,7 @@ namespace ActPreciosCarn.Datos
         }
 
         // inserta un nuevo usuario
-        public bool insertaUsuario(string nombreCompleto, string correo, string usuario, string clave)
+        public bool insertaUsuario(string nombreCompleto, string correo, string usuario, string clave, string fecha)
         {
             MySqlTransaction trans;
 
@@ -367,7 +373,7 @@ namespace ActPreciosCarn.Datos
                         // inserta actuaizacion
                         sql =
                             "INSERT INTO usuarios (nombre_completo, correo, fecha_creacion, usuario, clave, status) " +
-                            "VALUES (@nombreCompleto, @correo, now(), @usuario, @clave, @status)";
+                            "VALUES (@nombreCompleto, @correo, @fecha, @usuario, @clave, @status)";
 
                         string claveBase64 = Utilerias.Base64Encode(clave);
 
@@ -377,6 +383,7 @@ namespace ActPreciosCarn.Datos
                         cmd.Parameters.AddWithValue("@usuario", usuario);
                         cmd.Parameters.AddWithValue("@clave", claveBase64);
                         cmd.Parameters.AddWithValue("@status", "A");
+                        cmd.Parameters.AddWithValue("@fecha", fecha);
 
                         ManejoSql_My res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
 
@@ -912,6 +919,28 @@ namespace ActPreciosCarn.Datos
                     }
                 }
             }
+        }
+
+        // obtiene ip y nombre de maquina
+        private string getIpNameMachine()
+        {
+            // local ip
+            string localIP = string.Empty;
+            try
+            {
+                using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
+                {
+                    socket.Connect("8.8.8.8", 65530);
+                    IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
+                    localIP = endPoint.Address.ToString();
+                }
+            }
+            catch (Exception e)
+            {
+                localIP = string.Empty;
+            }
+
+            return Environment.MachineName + (string.IsNullOrEmpty(localIP) ? string.Empty : ":" + localIP);
         }
     }
 }

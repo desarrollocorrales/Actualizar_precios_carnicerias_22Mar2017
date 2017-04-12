@@ -242,5 +242,41 @@ namespace DescargaPreciosCarn.Datos
 
             return result;
         }
+
+        // obtiene la fecha de firebird, es la hora exacta mas cercana posible
+        // ya que se encuentra en un servidor en linea
+        public string getFecha()
+        {
+            string result = Convert.ToString(DateTime.Now);
+
+            string sql = "select current_timestamp from rdb$database";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexionFB.getConexionFB())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new FbCommand())
+                {
+                    cmd.Connection = conn;
+
+                    ManejoSql_FB res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                        while (res.reader.Read()) result = Convert.ToString(res.reader["current_timestamp"]).Trim();
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            DateTime dt = DateTime.Parse(result);
+
+            return dt.ToString("yyyy-MM-dd HH:mm:ss");
+        }
     }
 }

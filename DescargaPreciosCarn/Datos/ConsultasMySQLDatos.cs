@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using DescargaPreciosCarn.Modelos;
 using MySql.Data.MySqlClient;
+using System.Net.Sockets;
+using System.Net;
 
 namespace DescargaPreciosCarn.Datos
 {
@@ -134,7 +136,7 @@ namespace DescargaPreciosCarn.Datos
         }
 
         // genera bitacora
-        public long generaBitacora(string detalle)
+        public long generaBitacora(string detalle, string fecha)
         {
             int rows = 0;
             long result = 0;
@@ -149,10 +151,13 @@ namespace DescargaPreciosCarn.Datos
 
                     string bitacora =
                         "insert into bitacora (id_usuario, fecha, detalle, host) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()))";
+                        // "values (@idusu, @fecha, @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()))";
+                        "values (@idusu, @fecha, @detalle, @host)";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", detalle);
+                    cmd.Parameters.AddWithValue("@fecha", fecha);
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     ManejoSql_My res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -164,7 +169,7 @@ namespace DescargaPreciosCarn.Datos
             return result;
         }
 
-        // genera bitacora
+        // verifica descargas
         public bool verifDescargas(string sucursal)
         {
             bool result = false;
@@ -335,7 +340,7 @@ namespace DescargaPreciosCarn.Datos
                     if (res.ok)
                         if (res.reader.HasRows)
                             while (res.reader.Read())
-                                result = Convert.ToInt16(res.reader["num_bloque"]);
+                                result = res.reader["num_bloque"] == DBNull.Value ? 0 : Convert.ToInt16(res.reader["num_bloque"]);
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
 
@@ -492,6 +497,28 @@ namespace DescargaPreciosCarn.Datos
             }
 
             return result;
+        }
+
+        // obtiene ip y nombre de maquina
+        private string getIpNameMachine()
+        {
+            // local ip
+            string localIP = string.Empty;
+            try
+            {
+                using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
+                {
+                    socket.Connect("8.8.8.8", 65530);
+                    IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
+                    localIP = endPoint.Address.ToString();
+                }
+            }
+            catch (Exception e)
+            {
+                localIP = string.Empty;
+            }
+
+            return Environment.MachineName + (string.IsNullOrEmpty(localIP) ? string.Empty : ":" + localIP);
         }
     }
 }

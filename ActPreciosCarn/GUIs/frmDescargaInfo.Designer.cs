@@ -330,7 +330,7 @@
             this.MaximizeBox = false;
             this.Name = "frmDescargaInfo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Descarga Información";
+            this.Text = "Reporte de Descarga Información";
             this.Load += new System.EventHandler(this.frmDescargaInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gcActualizaciones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.actualizacionBindingSource)).EndInit();

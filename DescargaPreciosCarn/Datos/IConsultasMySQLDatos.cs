@@ -13,7 +13,7 @@ namespace DescargaPreciosCarn.Datos
 
         Modelos.Usuarios validaAcceso(string usuario, string pass);
 
-        long generaBitacora(string detalle);
+        long generaBitacora(string detalle, string fecha);
 
         bool verifDescargas(string sucursal);
 

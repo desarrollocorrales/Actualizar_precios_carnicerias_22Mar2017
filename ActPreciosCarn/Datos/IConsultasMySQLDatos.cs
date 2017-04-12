@@ -13,15 +13,15 @@ namespace ActPreciosCarn.Datos
 
         Modelos.Usuarios validaAcceso(string usuario, string pass);
 
-        long generaBitacora(string detalle);
+        long generaBitacora(string detalle, string fecha);
 
         int getSigBloque();
 
-        bool guardaActualizacion(List<Modelos.Articulos> seleccionados, int bloque);
+        bool guardaActualizacion(List<Modelos.Articulos> seleccionados, int bloque, string fecha);
 
         bool buscaCorreo(string correo);
 
-        bool insertaUsuario(string nombreCompleto, string correo, string usuario, string clave);
+        bool insertaUsuario(string nombreCompleto, string correo, string usuario, string clave, string fecha);
 
         bool validaClave(string claveActual, int _idUsuario);
 

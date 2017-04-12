@@ -66,17 +66,17 @@ namespace ActPreciosCarn.GUIs
                         else
                         {
                             // MICROSIP
-                            this.tbServidorM.Text = list[0].Substring(2);       // IP
-                            this.tbUsuarioM.Text = list[1].Substring(2);        // PUERTO
-                            this.tbContraseniaM.Text = list[2].Substring(2);    // servidor
-                            this.tbPuertoM.Text = list[3].Substring(2);         // usuario
-                            this.tbBaseDatosM.Text = list[4].Substring(2);      // contraseña
+                            this.tbServidorM.Text = list[0].Substring(2);       // SERVIDOR
+                            this.tbUsuarioM.Text = list[1].Substring(2);        // USUARIO
+                            this.tbContraseniaM.Text = list[2].Substring(2);    // CONTRASEÑA
+                            this.tbPuertoM.Text = list[3].Substring(2);         // PUERTO
+                            this.tbBaseDatosM.Text = list[4].Substring(2);      // BASE DE DATOS
 
                             // MYSQL
-                            this.tbServidorMs.Text = list[5].Substring(2);      // base de datos
-                            this.tbUsuarioMs.Text = list[6].Substring(2);       // nombre del checador
-                            this.tbContraseniaMs.Text = list[7].Substring(2);   // tipo del checador
-                            this.tbBaseDeDatosMs.Text = list[8].Substring(2);   // numero del checador
+                            this.tbServidorMs.Text = list[5].Substring(2);      // SERVIDOR
+                            this.tbUsuarioMs.Text = list[6].Substring(2);       // USUARIO
+                            this.tbContraseniaMs.Text = list[7].Substring(2);   // CONTRASEÑA
+                            this.tbBaseDeDatosMs.Text = list[8].Substring(2);   // BASE DE DATOS
                         }
                     }
                 }

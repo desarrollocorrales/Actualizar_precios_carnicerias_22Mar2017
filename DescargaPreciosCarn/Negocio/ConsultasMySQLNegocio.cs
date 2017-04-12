@@ -49,9 +49,9 @@ namespace DescargaPreciosCarn.Negocio
             return result;
         }
 
-        public long generaBitacora(string detalle)
+        public long generaBitacora(string detalle, string fecha)
         {
-            return this._consultasMySQLDatos.generaBitacora(detalle);
+            return this._consultasMySQLDatos.generaBitacora(detalle, fecha);
         }
 
         public bool verifDescargas(string sucursal)

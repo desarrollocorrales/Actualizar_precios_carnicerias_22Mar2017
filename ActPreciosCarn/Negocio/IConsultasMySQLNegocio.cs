@@ -11,11 +11,11 @@ namespace ActPreciosCarn.Negocio
 
         Modelos.Response validaAcceso(string usuario, string pass);
 
-        long generaBitacora(string detalle);
+        long generaBitacora(string detalle, string fecha);
 
-        int guardaActualizacion(List<Modelos.Articulos> seleccionados);
+        int guardaActualizacion(List<Modelos.Articulos> seleccionados, string fecha);
 
-        Modelos.Response creaUsuario(string nombreCompleto, string correo, string usuario, string clave);
+        Modelos.Response creaUsuario(string nombreCompleto, string correo, string usuario, string clave, string fecha);
 
         bool validaClave(string claveActual, int _idUsuario);
 

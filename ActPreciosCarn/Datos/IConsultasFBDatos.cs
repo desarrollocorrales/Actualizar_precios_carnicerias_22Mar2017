@@ -12,5 +12,7 @@ namespace ActPreciosCarn.Datos
         List<Modelos.Articulos> obtieneArticulos(Dictionary<string, long> precEmpr);
 
         Dictionary<string, long> getPreciosEmpresas();
+
+        string getFecha();
     }
 }

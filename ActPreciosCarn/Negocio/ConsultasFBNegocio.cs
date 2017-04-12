@@ -31,5 +31,11 @@ namespace ActPreciosCarn.Negocio
         {
             return this._consultasFBDatos.getPreciosEmpresas();
         }
+
+
+        public string getFecha()
+        {
+            return this._consultasFBDatos.getFecha();
+        }
     }
 }

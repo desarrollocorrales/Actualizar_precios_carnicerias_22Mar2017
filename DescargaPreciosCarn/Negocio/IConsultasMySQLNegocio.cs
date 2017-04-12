@@ -11,7 +11,7 @@ namespace DescargaPreciosCarn.Negocio
 
         Modelos.Response validaAcceso(string usuario, string pass);
 
-        long generaBitacora(string detalle);
+        long generaBitacora(string detalle, string fecha);
 
         bool verifDescargas(string sucursal);
 

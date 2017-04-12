@@ -15,6 +15,7 @@ namespace ActPreciosCarn.GUIs
         private string _usuario;
         private int _idUsuario;
         IConsultasMySQLNegocio _consultasMySQLNegocio;
+        private IConsultasFBNegocio _consultasFBNegocio;
 
         public frmCambiarClave(string usuario, int idUsuario)
         {
@@ -23,6 +24,7 @@ namespace ActPreciosCarn.GUIs
             this._usuario = usuario;
             this._idUsuario = idUsuario;
             this._consultasMySQLNegocio = new ConsultasMySQLNegocio();
+            this._consultasFBNegocio = new ConsultasFBNegocio();
         }
 
         private void frmCambiarClave_Load(object sender, EventArgs e)
@@ -57,9 +59,12 @@ namespace ActPreciosCarn.GUIs
 
                 if (respuesta)
                 {
+                    string fecha = getFechaFireBird();
+
                     // bitacora
                     this._consultasMySQLNegocio.generaBitacora(
-                        "Se modificó la clave del usuario " + this._usuario + " por " + Modelos.Utilerias.Base64Encode(this.tbClaveNueva.Text));
+                        "Se modificó la clave del usuario " + this._usuario + " por " + Modelos.Utilerias.Base64Encode(this.tbClaveNueva.Text),
+                        fecha);
 
                     this.tbClaveActual.Text = string.Empty;
                     this.tbClaveNueva.Text = string.Empty;
@@ -80,6 +85,22 @@ namespace ActPreciosCarn.GUIs
             {
                 this.btnGuardar_Click(null, null);
             }
+        }
+
+        public string getFechaFireBird()
+        {
+            string result = string.Empty;
+
+            try
+            {
+                result = this._consultasFBNegocio.getFecha();
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Actualizar Precios Carnicerías", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            return result;
         }
     }
 }

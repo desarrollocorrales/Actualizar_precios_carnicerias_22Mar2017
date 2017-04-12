@@ -49,23 +49,23 @@ namespace ActPreciosCarn.Negocio
             return result;
         }
 
-        public long generaBitacora(string detalle)
+        public long generaBitacora(string detalle, string fecha)
         {
-            return this._consultasMySQLDatos.generaBitacora(detalle);
+            return this._consultasMySQLDatos.generaBitacora(detalle, fecha);
         }
 
-        public int guardaActualizacion(List<Modelos.Articulos> seleccionados)
+        public int guardaActualizacion(List<Modelos.Articulos> seleccionados, string fecha)
         {
             // obtener el proximo bloque
             int bloque = this._consultasMySQLDatos.getSigBloque();
 
             // guarda actualizacion
-            this._consultasMySQLDatos.guardaActualizacion(seleccionados, bloque + 1);
+            this._consultasMySQLDatos.guardaActualizacion(seleccionados, bloque + 1, fecha);
 
             return bloque + 1;
         }
 
-        public Modelos.Response creaUsuario(string nombreCompleto, string correo, string usuario, string clave)
+        public Modelos.Response creaUsuario(string nombreCompleto, string correo, string usuario, string clave, string fecha)
         {
             Modelos.Response result = new Modelos.Response();
 
@@ -90,7 +90,7 @@ namespace ActPreciosCarn.Negocio
             }
 
             // inserta el usuario
-            bool inserta = this._consultasMySQLDatos.insertaUsuario(nombreCompleto, correo, usuario, clave);
+            bool inserta = this._consultasMySQLDatos.insertaUsuario(nombreCompleto, correo, usuario, clave, fecha);
 
             result.status = Modelos.Estatus.OK;
 

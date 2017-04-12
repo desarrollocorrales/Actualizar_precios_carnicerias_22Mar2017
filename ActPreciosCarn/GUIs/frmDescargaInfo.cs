@@ -13,11 +13,13 @@ namespace ActPreciosCarn.GUIs
     public partial class frmDescargaInfo : Form
     {
         private IConsultasMySQLNegocio _consultasMySQLNegocio;
+        private IConsultasFBNegocio _consultasFBNegocio;
 
         public frmDescargaInfo()
         {
             InitializeComponent();
             this._consultasMySQLNegocio = new ConsultasMySQLNegocio();
+            this._consultasFBNegocio = new ConsultasFBNegocio();
         }
 
         private void frmDescargaInfo_Load(object sender, EventArgs e)
@@ -74,6 +76,8 @@ namespace ActPreciosCarn.GUIs
                 this.gcActualizaciones.DataSource = null;
                 this.gcActualizaciones.DataSource = resultado;
 
+                string fecha = getFechaFireBird();
+
                 // bitacora
                 this._consultasMySQLNegocio.generaBitacora((
                     "Consulta de descarga de información:" 
@@ -82,7 +86,7 @@ namespace ActPreciosCarn.GUIs
                         + "' Bloque:'" + bloque 
                         + "' " 
                         + (pendiente ? "PENDIENTE" : string.Empty) + " "
-                        + (realizado ? "RELIZADO" : string.Empty)).Replace("  ", ""));
+                        + (realizado ? "RELIZADO" : string.Empty)).Replace("  ", ""), fecha);
 
             }
             catch (Exception Ex)
@@ -110,8 +114,13 @@ namespace ActPreciosCarn.GUIs
             try
             {
                 // obtiene bloques del rango de fechas
+                /*
                 string fechaIni = this.dtpFechaInicio.Value.ToString("yyyy-MM-dd");
                 string fechaFin = this.dtpFechaFin.Value.ToString("yyyy-MM-dd");
+                */
+
+                string fechaIni = this.dtpFechaInicio.Value.ToString("yyyy-MM-dd");
+                string fechaFin = this.dtpFechaFin.Value.AddHours(23).AddMinutes(59).AddSeconds(59).ToString("yyyy-MM-dd");
 
                 List<int> resultado = this._consultasMySQLNegocio.obtieneBloques(fechaIni, fechaFin);
 
@@ -153,6 +162,66 @@ namespace ActPreciosCarn.GUIs
 
         private void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
+            //  F I D E L
+            if (e.Column.FieldName == "fidel")
+            {
+                var data = gridView1.GetRow(e.RowHandle) as Modelos.Actualizacion;
+                if (data == null)
+                    return;
+
+                if (data.fidel.Equals("PENDIENTE"))
+                {
+                    e.Appearance.ForeColor = Color.Red;
+                    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                }
+
+                if (data.fidel.Equals("REALIZADO"))
+                {
+                    e.Appearance.ForeColor = Color.Green;
+                    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                }
+            }
+
+            // L I B E R T A D
+            if (e.Column.FieldName == "libertad")
+            {
+                var data = gridView1.GetRow(e.RowHandle) as Modelos.Actualizacion;
+                if (data == null)
+                    return;
+
+                if (data.libertad.Equals("PENDIENTE"))
+                {
+                    e.Appearance.ForeColor = Color.Red;
+                    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                }
+
+                if (data.libertad.Equals("REALIZADO"))
+                {
+                    e.Appearance.ForeColor = Color.Green;
+                    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                }
+            }
+
+            // H E R O I C O
+            if (e.Column.FieldName == "heroico")
+            {
+                var data = gridView1.GetRow(e.RowHandle) as Modelos.Actualizacion;
+                if (data == null)
+                    return;
+
+                if (data.heroico.Equals("PENDIENTE"))
+                {
+                    e.Appearance.ForeColor = Color.Red;
+                    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                }
+
+                if (data.heroico.Equals("REALIZADO"))
+                {
+                    e.Appearance.ForeColor = Color.Green;
+                    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                }
+            }
+
             DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
 
             if (e.RowHandle == view.FocusedRowHandle)
@@ -160,6 +229,23 @@ namespace ActPreciosCarn.GUIs
                 e.Appearance.BackColor = System.Drawing.ColorTranslator.FromHtml("#2E86C1");
                 e.Appearance.ForeColor = Color.White;
             }
+            
+        }
+
+        public string getFechaFireBird()
+        {
+            string result = string.Empty;
+
+            try
+            {
+                result = this._consultasFBNegocio.getFecha();
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Actualizar Precios Carnicerías", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            return result;
         }
     }
 }

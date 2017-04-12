@@ -13,6 +13,7 @@ namespace ActPreciosCarn.GUIs
     public partial class frmAtlaUsuario : Form
     {
         private IConsultasMySQLNegocio _consultasMySQLNegocio;
+        private IConsultasFBNegocio _consultasFBNegocio;
 
         public frmAtlaUsuario()
         {
@@ -20,6 +21,7 @@ namespace ActPreciosCarn.GUIs
 
             this.ActiveControl = this.tbNombre;
             this._consultasMySQLNegocio = new ConsultasMySQLNegocio();
+            this._consultasFBNegocio = new ConsultasFBNegocio();
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
@@ -42,20 +44,21 @@ namespace ActPreciosCarn.GUIs
                 if (!this.tbConfirmClave.Text.Equals(this.tbClave.Text))
                     throw new Exception("La claves no coinciden");
 
-
                 string nombreCompleto = this.tbNombre.Text;
                 string correo = this.tbCorreo.Text;
                 string usuario = this.tbUsuario.Text;
                 string clave = this.tbClave.Text;
-                
+
+                string fecha = getFechaFireBird();
+
                 // guarda el usuario
-                Modelos.Response resp = this._consultasMySQLNegocio.creaUsuario(nombreCompleto, correo, usuario, clave);
+                Modelos.Response resp = this._consultasMySQLNegocio.creaUsuario(nombreCompleto, correo, usuario, clave, fecha);
 
                 if (resp.status == Modelos.Estatus.OK)
                 {
                     // bitacora
                     this._consultasMySQLNegocio.generaBitacora(
-                        "Usuario creado '" + usuario + "'");
+                        "Usuario creado '" + usuario + "'", fecha);
 
                     MessageBox.Show("El usuario ha sido creado correctamente", "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.tbNombre.Text = string.Empty;
@@ -72,6 +75,22 @@ namespace ActPreciosCarn.GUIs
             {
                 MessageBox.Show(Ex.Message, "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        public string getFechaFireBird()
+        {
+            string result = string.Empty;
+
+            try
+            {
+                result = this._consultasFBNegocio.getFecha();
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Actualizar Precios Carnicerías", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            return result;
         }
     }
 }
