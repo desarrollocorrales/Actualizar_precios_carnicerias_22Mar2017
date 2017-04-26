@@ -316,7 +316,7 @@ namespace DescargaPreciosCarn
 
                 // bitacora
                 this._consultasMySQLNegocio.generaBitacora(
-                    "Sesión cerrada por el usuario '" + Modelos.Login.nombre + "'" + "en sucursal '" + Modelos.Login.sucursal + "'", fecha);
+                    "Sesión cerrada por el usuario '" + Modelos.Login.nombre + "'" + " en sucursal '" + Modelos.Login.sucursal + "'", fecha);
             }
             catch (Exception Ex)
             {

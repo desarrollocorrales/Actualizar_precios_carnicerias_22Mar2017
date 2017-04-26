@@ -66,7 +66,6 @@
             this.tbPass.PasswordChar = '*';
             this.tbPass.Size = new System.Drawing.Size(286, 30);
             this.tbPass.TabIndex = 18;
-            this.tbPass.Text = "s";
             this.tbPass.UseSystemPasswordChar = true;
             this.tbPass.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPass_KeyPress);
             // 
@@ -77,7 +76,6 @@
             this.tbUsuario.Name = "tbUsuario";
             this.tbUsuario.Size = new System.Drawing.Size(286, 30);
             this.tbUsuario.TabIndex = 17;
-            this.tbUsuario.Text = "libertad";
             this.tbUsuario.Enter += new System.EventHandler(this.tbUsuario_Enter);
             this.tbUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbUsuario_KeyPress);
             // 

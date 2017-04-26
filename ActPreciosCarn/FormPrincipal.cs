@@ -187,7 +187,10 @@ namespace ActPreciosCarn
                 // obtiene los articulos seleccionadas del grid de articulos
                 List<Modelos.Articulos> seleccionados = ((List<Modelos.Articulos>)this.gridView2.DataSource).Where(w => w.seleccionado == false).Select(s => s).ToList();
 
-                if (seleccionados.Count == 0) return;
+                if (seleccionados.Count == 0)
+                    if (((List<Modelos.Articulos>)this.gridView2.DataSource).Count > 1) return;
+                    else
+                        this.gcArticActualizar.DataSource = new List<Modelos.Articulos>();
 
                 this.gcArticActualizar.DataSource = null;
                 this.gcArticActualizar.DataSource = seleccionados;

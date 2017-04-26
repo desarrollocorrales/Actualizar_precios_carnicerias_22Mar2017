@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActPreciosCarn", "ActPrecio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DescargaPreciosCarn", "..\DescargaPreciosCarn\DescargaPreciosCarn.csproj", "{A6666D38-0BC6-41F3-BAC9-BC1379366A9F}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "actPreciosCarnSetup", "..\actPreciosCarnSetup\actPreciosCarnSetup.vdproj", "{5DF26705-B779-4E8A-B4E5-4E1F77AC6703}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "descPreciosCarnSetup", "..\descPreciosCarnSetup\descPreciosCarnSetup.vdproj", "{F8F0FFAC-0EEA-4996-AE23-A7F393CB9527}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -19,6 +23,10 @@ Global
 		{A6666D38-0BC6-41F3-BAC9-BC1379366A9F}.Debug|x86.Build.0 = Debug|x86
 		{A6666D38-0BC6-41F3-BAC9-BC1379366A9F}.Release|x86.ActiveCfg = Release|x86
 		{A6666D38-0BC6-41F3-BAC9-BC1379366A9F}.Release|x86.Build.0 = Release|x86
+		{5DF26705-B779-4E8A-B4E5-4E1F77AC6703}.Debug|x86.ActiveCfg = Debug
+		{5DF26705-B779-4E8A-B4E5-4E1F77AC6703}.Release|x86.ActiveCfg = Release
+		{F8F0FFAC-0EEA-4996-AE23-A7F393CB9527}.Debug|x86.ActiveCfg = Debug
+		{F8F0FFAC-0EEA-4996-AE23-A7F393CB9527}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

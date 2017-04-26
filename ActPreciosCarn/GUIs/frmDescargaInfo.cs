@@ -52,7 +52,7 @@ namespace ActPreciosCarn.GUIs
                     throw new Exception("La fecha de inicio no puede ser mayor a la fecha final");
 
                 string fechaIni = this.dtpFechaInicio.Value.ToString("yyyy-MM-dd");
-                string fechaFin = this.dtpFechaFin.Value.AddHours(23).AddMinutes(59).AddSeconds(59).ToString("yyyy-MM-dd");
+                string fechaFin = this.dtpFechaFin.Value.AddHours(24).ToString("yyyy-MM-dd");
 
                 int bloque = 0;
                 if (this.cbMostrarBloques.Checked)
