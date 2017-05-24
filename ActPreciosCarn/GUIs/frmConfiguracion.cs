@@ -118,6 +118,16 @@ namespace ActPreciosCarn.GUIs
         {
             try
             {
+                // validaciones
+                foreach (Control x in this.groupBox2.Controls)
+                {
+                    if (x is TextBox)
+                    {
+                        if (string.IsNullOrEmpty(((TextBox)x).Text))
+                            throw new Exception("Campos incompletos, Por favor verifique");
+                    }
+                }
+
                 Modelos.ConectionString.connMySQL = string.Format(
                             "Data Source={0};database={1};User Id={2};password={3};",
                             this.tbServidorMs.Text,
@@ -132,7 +142,7 @@ namespace ActPreciosCarn.GUIs
                 if (pruebaConn)
                     MessageBox.Show("Conexión Exitosa!!!", "Configuración", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 else
-                    throw new Exception("Falló la conexión a la base de datos del Microsip");
+                    throw new Exception("Falló la conexión a la base de datos");
             }
             catch (Exception Ex)
             {
